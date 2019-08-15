@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:teams_permutator/screens/dummy/cupertino_dummy_screen.dart';
 import 'package:teams_permutator/screens/home/home_screen.dart';
+import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
@@ -38,16 +40,30 @@ class MyApp extends StatelessWidget {
             fontFamily: 'SF Compact Rounded',
             fontWeight: FontWeight.w300,
           ),
-
         ),
-
-        // barBackgroundColor: Colors.grey[350],
         primaryContrastingColor: Colors.blue,
       ),
       initialRoute: '/',
       routes: {
         '/': (ctx) => HomeScreen(),
-        // FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
+        DummyScreen.routeName: (ctx) => DummyScreen(),
+      },
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   if (settings.name == '/tabs') {
+      //     return CupertinoPageRoute(builder: (ctx) => TabsScreen(),);
+      //   } else if (settings.name == '/') {
+      //     return CupertinoPageRoute(builder: (ctx) => HomeScreen(),);
+      //   } else if (settings.name == '/dummy') {
+      //     return CupertinoPageRoute(builder: (ctx) => DummyScreen(),);
+      //   }
+      //    return CupertinoPageRoute(builder: (ctx) => HomeScreen(),);
+      // },
+      onUnknownRoute: (settings) {
+        // called when even OnGenerateRoute fails. Like the 404 not found for web
+        return CupertinoPageRoute(
+          builder: (ctx) => TabsScreen(),
+        );
       },
     );
   }

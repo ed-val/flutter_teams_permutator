@@ -1,40 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:teams_permutator/screens/dummy/cupertino_dummy_screen.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 
-
-class HomeScreen extends StatefulWidget {
+class DummyScreen extends StatefulWidget {
+  
+  DummyScreen({Key key}) : super(key: key);
+  static const routeName = '/dummy';
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _DummyScreenState createState() => _DummyScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  GlobalKey<FormState> _homeKey = GlobalKey<FormState>(debugLabel: '_homeScreenkey');
+class _DummyScreenState extends State<DummyScreen> {
+  GlobalKey<FormState> _dummyKey = GlobalKey<FormState>(debugLabel: '_dummyKey');
   @override
   // void initState() {
   //   super.initState();
   // }
-  @override
-  void dispose() {
-    // _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      key: _homeKey,
       child: CustomScrollView(
+        key: _dummyKey,
         semanticChildCount: 1,
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
+            previousPageTitle: 'Home',
             // transitionBetweenRoutes: true,
             // trailing: buildNavButton(),
-            leading: const Text(''),
+            // leading: const Text('Dummy Screen'),
             backgroundColor: Colors.white,
-            largeTitle: Text(''),
-            middle: Text('Willkommen'),
+            largeTitle: Text('Dummy Screen'),
+            // middle: Text('Dummy'),
           ),
           SliverPadding(
             padding: MediaQuery.of(context).removePadding(
@@ -46,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                 return Container(
                   child: Center(
-                    child: buildNavButton(context),
+                    child: buildNavButton(),
                   ),
                 );
               },
@@ -57,24 +54,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       )
     );
-  
   }
 
-
-  Widget buildNavButton(BuildContext context) {
+  Widget buildNavButton() {
     return Container(
       child: CupertinoButton(
         child: Row(
           children: <Widget>[
-            Text('Go check teams!'),
-            Icon(CupertinoIcons.right_chevron)
+            Text('< Go back!'),
+            // Icon(CupertinoIcons.right_chevron)
           ],
         ), 
         onPressed: () {
-          Navigator.push(
-            context, 
-            CupertinoPageRoute(builder: (ctx) => DummyScreen(),),
-          );
+          // Navigator.of(context).pop();
         },
       ),
     );
