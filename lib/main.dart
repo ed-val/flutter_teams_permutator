@@ -13,9 +13,10 @@ class MyApp extends StatelessWidget {
       theme: CupertinoThemeData(
         textTheme: CupertinoTextThemeData(
           navTitleTextStyle: TextStyle(
+            color: Colors.grey[850],
             fontSize: 32,
-            fontFamily: 'RobotoCondensed',
-            fontWeight: FontWeight.bold,
+            fontFamily: 'SF UI Display',
+            fontWeight: FontWeight.w700,
           ),
           // body1: TextStyle(
           //   color: Color.fromRGBO(20, 51, 51, 1),
