@@ -135,6 +135,25 @@ flutter:
         - asset: lib/assets/fonts/SFUIText/SFUIText-HeavyItalic.ttf
           style: italic
           weight: 900
+    - family: SF Compact Rounded
+      fonts: 
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Thin.ttf
+          weight: 100
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Ultralight.ttf
+          weight: 200
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Light.ttf
+          weight: 300
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Regular.ttf
+          weight: 400
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Medium.ttf
+          weight: 500
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Semibold.ttf
+          weight: 600
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Bold.ttf
+          weight: 700
+        - asset: lib/assets/fonts/SFCompactRounded/SF-Compact-Rounded-Heavy.ttf
+          weight: 800
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

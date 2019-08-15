@@ -18,6 +18,19 @@ class MyApp extends StatelessWidget {
             fontFamily: 'SF UI Display',
             fontWeight: FontWeight.w700,
           ),
+          textStyle: TextStyle(
+            color: Colors.grey[800],
+            fontSize: 16,
+            fontFamily: 'SF UI Text',
+            fontWeight: FontWeight.w300,
+          ),
+          actionTextStyle: TextStyle(
+            color: Colors.blue,
+            fontSize: 16,
+            fontFamily: 'SF Compact Rounded',
+            fontWeight: FontWeight.w300,
+          ),
+
           // body1: TextStyle(
           //   color: Color.fromRGBO(20, 51, 51, 1),
           // ),
