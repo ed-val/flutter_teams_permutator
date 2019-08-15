@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:teams_permutator/screens/home/home_screen.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
+
+// Navigator.push(
+//     context, CupertinoPageRoute(builder: (context) => Screen2()))
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // used in Android only
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+       statusBarColor: Colors.transparent
+    ));
     return CupertinoApp(
       title: 'Permutator',
       theme: CupertinoThemeData(
@@ -31,18 +39,8 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w300,
           ),
 
-          // body1: TextStyle(
-          //   color: Color.fromRGBO(20, 51, 51, 1),
-          // ),
-          // body2: TextStyle(
-          //   color: Color.fromRGBO(20, 51, 51, 1),
-          // ),
-          // title: TextStyle(
-          //   fontSize: 20,
-          //   fontFamily: 'RobotoCondensed',
-          //   fontWeight: FontWeight.bold,
-          // )),
         ),
+
         // barBackgroundColor: Colors.grey[350],
         primaryContrastingColor: Colors.blue,
       ),

@@ -27,6 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
+        onTap: (int index) {
+          switch (index) {
+            case 0: return Navigator.of(context, rootNavigator: false).push(CupertinoPageRoute(builder: (context) => PermutatorScreen(),),);
+            case 1: return Navigator.of(context, rootNavigator: false).push(CupertinoPageRoute(builder: (context) => SingleTeamScreen(),),);
+          }
+          return null;
+        },
         activeColor: Colors.blue,
         backgroundColor: Colors.white70, //get blurr efect
         inactiveColor: Colors.grey[300],
@@ -48,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         switch (index) {
           case 0:
             return CupertinoTabView(
+
               builder: (BuildContext context) => PermutatorScreen(),
               defaultTitle: 'Permutator',
             );
