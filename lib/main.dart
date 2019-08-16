@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:teams_permutator/screens/dummy/cupertino_dummy_screen.dart';
 import 'package:teams_permutator/screens/home/home_screen.dart';
+import 'package:teams_permutator/screens/permutator/permutator_screen.dart';
+import 'package:teams_permutator/screens/singleTeam/single_team_screen.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 import 'package:flutter/services.dart';
 
@@ -46,7 +48,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (ctx) => HomeScreen(),
-        DummyScreen.routeName: (ctx) => DummyScreen(),
+        // DummyScreen.routeName: (ctx) => DummyScreen(),
+        TabsScreen.routeName: (ctx) => TabsScreen(),
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);

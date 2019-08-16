@@ -25,6 +25,7 @@ class _DummyScreenState extends State<DummyScreen> {
         semanticChildCount: 1,
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
+            
             previousPageTitle: 'Home',
             // transitionBetweenRoutes: true,
             // trailing: buildNavButton(),

@@ -5,6 +5,7 @@ import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = '/';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -71,9 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ), 
         onPressed: () {
-          Navigator.push(
+          Navigator.pushNamed(
             context, 
-            CupertinoPageRoute(builder: (ctx) => DummyScreen(),),
+            // CupertinoPageRoute(builder: (ctx) => TabsScreen(),),
+            TabsScreen.routeName
           );
         },
       ),

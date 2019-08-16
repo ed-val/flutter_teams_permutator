@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class SingleTeamScreen extends StatelessWidget {
+  static const routeName = '/single_team_screen';
   const SingleTeamScreen({Key key}) : super(key: key);
 
   @override
