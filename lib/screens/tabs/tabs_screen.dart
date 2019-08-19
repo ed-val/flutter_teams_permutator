@@ -13,9 +13,9 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   List<Map<String, Object>> _pages;
-  final CupertinoTabController _tabController = CupertinoTabController(initialIndex: 0);
+  final CupertinoTabController _tabController =
+      CupertinoTabController(initialIndex: 0);
   // int _selectedPageIndex = 0;
-
 
   // void goBack() {
   //   Navigator.popAndPushNamed(context, HomeScreen.routeName);
@@ -28,12 +28,22 @@ class _TabsScreenState extends State<TabsScreen> {
       tabBar: CupertinoTabBar(
         onTap: (int index) {
           switch (index) {
-            case 0: return EnterExitRoute(exitPage: TabsScreen(), enterPage: PermutatorScreen());
-            case 1: return EnterExitRoute(exitPage: TabsScreen(), enterPage: SingleTeamScreen());
+            case 0:
+              EnterExitRoute(
+                  exitPage: PermutatorScreen(), enterPage: SingleTeamScreen());
+              break;
+            case 1:
+              EnterExitRoute(
+                  exitPage: SingleTeamScreen(), enterPage: PermutatorScreen());
+              break;
           }
           return null;
         },
-        border: const Border(top: BorderSide(color: Colors.transparent, width: 0.0, style: BorderStyle.solid)),
+        border: const Border(
+            top: BorderSide(
+                color: Colors.transparent,
+                width: 0.0,
+                style: BorderStyle.solid)),
         activeColor: Colors.blue,
         backgroundColor: Colors.transparent, //get blurr efect
         inactiveColor: Colors.grey[300],

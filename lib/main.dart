@@ -17,12 +17,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // used in Android only
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-       statusBarColor: Colors.transparent
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: Colors.transparent,
+      // statusBarBrightness: Brightness.dark,
+      // statusBarIconBrightness: Brightness.dark,
     ));
     return CupertinoApp(
       title: 'Permutator',
       theme: CupertinoThemeData(
+        primaryColor: CupertinoColors.activeBlue,
+        primaryContrastingColor: CupertinoColors.activeBlue,
+        // dont use Colors.transparent: Current bug turns icons white
+        barBackgroundColor: Colors.white10,
         textTheme: CupertinoTextThemeData(
           navTitleTextStyle: TextStyle(
             color: Colors.grey[850],
@@ -43,7 +49,6 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w300,
           ),
         ),
-        primaryContrastingColor: Colors.blue,
       ),
       initialRoute: '/',
       routes: {
