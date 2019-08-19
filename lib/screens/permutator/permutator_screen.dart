@@ -23,6 +23,7 @@ class _PermutatorScreenState extends State<PermutatorScreen> {
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
             automaticallyImplyLeading: false,
+            largeTitle: Text('Permutator'),
             leading: CupertinoNavigationBarBackButton(
               previousPageTitle: 'Home',
               onPressed: () {
@@ -38,29 +39,8 @@ class _PermutatorScreenState extends State<PermutatorScreen> {
             // previousPageTitle: 'Home',
             trailing: Icon(CupertinoIcons.add_circled),
           ),
-          SliverPadding(
-            // Top media padding consumed by CupertinoSliverNavigationBar.
-            // Left/Right media padding consumed by Tab1RowItem.
-            padding: MediaQuery.of(context)
-                .removePadding(
-                  removeTop: true,
-                  removeLeft: true,
-                  removeRight: true,
-                )
-                .padding,
-            sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  child: Center(
-                    child: Text('Willkommen zu Permutator'),
-                  ),
-                );
-              },
-              childCount: 1,
-            )),
-          ),
           SliverPersistentHeader(
+            floating: true,
             pinned: true,
             delegate: SliverAppBarDelegate(
               child: PreferredSize(
@@ -72,31 +52,31 @@ class _PermutatorScreenState extends State<PermutatorScreen> {
               ),
             ),
           ),
+          SliverPadding(
+            // Top media padding consumed by CupertinoSliverNavigationBar.
+            // Left/Right media padding consumed by Tab1RowItem.
+            padding: MediaQuery.of(context)
+                .removePadding(
+                  removeTop: true,
+                  removeLeft: true,
+                  removeRight: true,
+                )
+                .padding,
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Container(
+                    child: Center(
+                      child: Text('Willkommen zu Permutator'),
+                    ),
+                  );
+                },
+                childCount: 1,
+              ),
+            ),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget buildLeading(BuildContext context) {
-    return FittedBox(
-      child: Center(
-          child: CupertinoButton(
-        onPressed: () {
-          Navigator.of(context, rootNavigator: true).removeRoute(
-            CupertinoPageRoute(
-              builder: (ctx) => HomeScreen(),
-            ),
-            // HomeScreen.routeName,
-          );
-        },
-        child: Row(
-          children: <Widget>[
-            Icon(CupertinoIcons.left_chevron),
-            Text('Home',
-                style: CupertinoTheme.of(context).textTheme.actionTextStyle),
-          ],
-        ),
-      )),
     );
   }
 }

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Permutator',
       theme: CupertinoThemeData(
         primaryColor: CupertinoColors.activeBlue,
-        primaryContrastingColor: CupertinoColors.activeBlue,
+        primaryContrastingColor: CupertinoColors.lightBackgroundGray,
         // dont use Colors.transparent: Current bug turns icons white
         barBackgroundColor: Colors.white10,
         textTheme: CupertinoTextThemeData(

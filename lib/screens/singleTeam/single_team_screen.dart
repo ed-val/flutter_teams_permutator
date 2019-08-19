@@ -10,6 +10,8 @@ class SingleTeamScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        automaticallyImplyMiddle: true,
+        border: Border.all(color: Colors.white),
         transitionBetweenRoutes: true,
         middle: Text('Analize Team'),
       ),

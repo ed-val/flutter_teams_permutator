@@ -29,21 +29,30 @@ class _TabsScreenState extends State<TabsScreen> {
         onTap: (int index) {
           switch (index) {
             case 0:
-              EnterExitRoute(
-                  exitPage: PermutatorScreen(), enterPage: SingleTeamScreen());
+              Navigator.pushReplacement(
+                context,
+                EnterExitRoute(
+                  exitPage: PermutatorScreen(),
+                  enterPage: SingleTeamScreen(),
+                ),
+              );
               break;
             case 1:
-              EnterExitRoute(
-                  exitPage: SingleTeamScreen(), enterPage: PermutatorScreen());
+              Navigator.pushReplacement(
+                context,
+                EnterExitRoute(
+                  exitPage: SingleTeamScreen(),
+                  enterPage: PermutatorScreen(),
+                ),
+              );
               break;
           }
           return null;
         },
         border: const Border(
-            top: BorderSide(
-                color: Colors.transparent,
-                width: 0.0,
-                style: BorderStyle.solid)),
+          top: BorderSide(
+              color: Colors.transparent, width: 0.0, style: BorderStyle.solid),
+        ),
         activeColor: Colors.blue,
         backgroundColor: Colors.transparent, //get blurr efect
         inactiveColor: Colors.grey[300],
