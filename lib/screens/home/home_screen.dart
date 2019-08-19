@@ -72,10 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ), 
         onPressed: () {
-          Navigator.pushNamed(
+          Navigator.pushReplacement(
             context, 
-            // CupertinoPageRoute(builder: (ctx) => TabsScreen(),),
-            TabsScreen.routeName
+            CupertinoPageRoute(builder: (ctx) => TabsScreen(),),
+            // TabsScreen.routeName
           );
         },
       ),

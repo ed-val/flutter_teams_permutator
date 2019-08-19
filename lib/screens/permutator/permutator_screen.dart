@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:teams_permutator/screens/home/home_screen.dart';
+import 'package:teams_permutator/screens/home/home_screen.dart';
+import 'package:teams_permutator/screens/home/home_screen.dart';
 // import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 
 class PermutatorScreen extends StatefulWidget {
@@ -12,12 +13,9 @@ class PermutatorScreen extends StatefulWidget {
 
 class _PermutatorScreenState extends State<PermutatorScreen> {
   final GlobalKey<FormState> _permutatorKey = GlobalKey<FormState>(debugLabel: '_permutatorKey');
-  var tabsController; 
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context).settings.arguments as Function;
-    print(args);
     return CupertinoPageScaffold(
       child: CustomScrollView(
         key: _permutatorKey,
@@ -60,6 +58,10 @@ class _PermutatorScreenState extends State<PermutatorScreen> {
       child: Center(
         child: CupertinoButton(
           onPressed: () {
+            Navigator.of(context, rootNavigator: true).pushReplacement(
+            CupertinoPageRoute(builder: (ctx) => HomeScreen(),),
+            // TabsScreen.routeName
+          );
           },
           child: Row(
             children: <Widget>[

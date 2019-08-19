@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:teams_permutator/screens/home/home_screen.dart';
 import 'package:teams_permutator/screens/permutator/permutator_screen.dart';
 import 'package:teams_permutator/screens/singleTeam/single_team_screen.dart';
+import 'package:teams_permutator/utils/page_transitions.dart';
 
 class TabsScreen extends StatefulWidget {
   static const routeName = '/tabs';
@@ -25,13 +26,14 @@ class _TabsScreenState extends State<TabsScreen> {
     return CupertinoTabScaffold(
       controller: _tabController,
       tabBar: CupertinoTabBar(
-        // onTap: (int index) {
-        //   switch (index) {
-        //     case 0: return Navigator.of(context, rootNavigator: false).push(CupertinoPageRoute(builder: (context) => PermutatorScreen(),),);
-        //     case 1: return Navigator.of(context, rootNavigator: false).push(CupertinoPageRoute(builder: (context) => SingleTeamScreen(),),);
-        //   }
-        //   return null;
-        // },
+        onTap: (int index) {
+          switch (index) {
+            case 0: return EnterExitRoute(exitPage: TabsScreen(), enterPage: PermutatorScreen());
+            case 1: return EnterExitRoute(exitPage: TabsScreen(), enterPage: SingleTeamScreen());
+          }
+          return null;
+        },
+        border: const Border(top: BorderSide(color: Colors.transparent, width: 0.0, style: BorderStyle.solid)),
         activeColor: Colors.blue,
         backgroundColor: Colors.transparent, //get blurr efect
         inactiveColor: Colors.grey[300],
@@ -51,14 +53,14 @@ class _TabsScreenState extends State<TabsScreen> {
       tabBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            _tabController.index = 0;
+            // _tabController.index = 0;
             return CupertinoTabView(
               builder: (BuildContext context) => PermutatorScreen(),
               defaultTitle: 'Permutator',
             );
             break;
           case 1:
-            _tabController.index = 1;
+            // _tabController.index = 1;
             return CupertinoTabView(
               builder: (BuildContext context) => SingleTeamScreen(),
               defaultTitle: 'Analize Team',
