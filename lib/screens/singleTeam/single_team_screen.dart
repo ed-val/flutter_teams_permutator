@@ -23,6 +23,7 @@ class _SingleTeamScreenState extends State<SingleTeamScreen> {
         semanticChildCount: 1,
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
+            largeTitle: Text('Single Team Stats'),
             leading: CupertinoNavigationBarBackButton(
               previousPageTitle: 'Home',
               onPressed: () {

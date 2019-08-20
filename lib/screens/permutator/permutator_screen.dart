@@ -23,6 +23,7 @@ class _PermutatorScreenState extends State<PermutatorScreen> {
         semanticChildCount: 1,
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
+            largeTitle: Text('Permutations'),
             leading: CupertinoNavigationBarBackButton(
               previousPageTitle: 'Home',
               onPressed: () {

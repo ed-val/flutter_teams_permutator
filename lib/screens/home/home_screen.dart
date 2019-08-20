@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
-import 'package:teams_permutator/widgets/persisten_bottom_sheet.dart';
+import 'package:teams_permutator/widgets/backdrop_bottom_sheet.dart';
+// import 'package:teams_permutator/widgets/persisten_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -35,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.push(
               context,
               CupertinoPageRoute(
-                builder: (ctx) => PersistentBottomSheetDemo(),
+                fullscreenDialog: false,
+                title: 'Backdrop',
+                builder: (ctx) => BackdropDemo(),
               ),
               // TabsScreen.routeName
             );

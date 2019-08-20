@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
       onUnknownRoute: (settings) {
         // called when even OnGenerateRoute fails. Like the 404 not found for web
         return CupertinoPageRoute(
-          builder: (ctx) => TabsScreen(),
+          builder: (ctx) => HomeScreen(),
         );
       },
     );
