@@ -15,7 +15,7 @@ class _TabsScreenState extends State<TabsScreen>
       CupertinoTabController(initialIndex: 0);
   PageController _pageController = PageController(initialPage: 0);
   List<dynamic> tabList = [PermutatorScreen(), SingleTeamScreen()];
-  int tabBarHeight = 0;
+  // int tabBarHeight = 0;
   double currentPageView = 0.0;
 
   @override
@@ -58,32 +58,29 @@ class _TabsScreenState extends State<TabsScreen>
       ],
     );
 
+    print(_cupertinoTabBar.preferredSize.height);
+
     return Column(
       children: <Widget>[
         Expanded(
           // builds on demand with the builder
-          child: SizedBox(
-            // THIS DIMENSION IS NOT RIGHT, CHECK LATER
-            height: 600,
-            child: PageView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: ClampingScrollPhysics(),
-              itemCount: tabList.length,
-              onPageChanged: (index) {
-                print(index);
-                // as controller, doesnt need a setstate()
-                _cupertinoTabController.index = index;
-              },
-              controller: _pageController,
-              itemBuilder: (BuildContext context, int index) {
-                return tabList[index];
-              },
-            ),
+          child: PageView.builder(
+            scrollDirection: Axis.horizontal,
+            physics: ClampingScrollPhysics(),
+            itemCount: tabList.length,
+            onPageChanged: (index) {
+              print(index);
+              // as controller, doesnt need a setstate()
+              _cupertinoTabController.index = index;
+            },
+            controller: _pageController,
+            itemBuilder: (BuildContext context, int index) {
+              return tabList[index];
+            },
           ),
         ),
         SizedBox(
-          // THIS DIMENSION IS NOT RIGHT, CHECK LATER
-          height: 200,
+          height: _cupertinoTabBar.preferredSize.height,
           child: CupertinoTabScaffold(
             resizeToAvoidBottomInset: true,
             controller: _cupertinoTabController,
@@ -93,12 +90,16 @@ class _TabsScreenState extends State<TabsScreen>
                 case 0:
                   return CupertinoTabView(
                     // build nothing
-                    builder: (BuildContext context) => buildDummyTab(context),
+                    builder: (BuildContext context) => Container(
+                      child: SizedBox(height: 0, width: 0),
+                    ),
                   );
                 case 1:
                   return CupertinoTabView(
                     // build nothing
-                    builder: (BuildContext context) => buildDummyTab(context),
+                    builder: (BuildContext context) => Container(
+                      child: SizedBox(height: 0, width: 0),
+                    ),
                   );
               }
               return null;
@@ -117,10 +118,6 @@ class _TabsScreenState extends State<TabsScreen>
         curve: Curves.easeInOut,
       );
     }
-  }
-
-  Widget buildDummyTab(BuildContext context) {
-    return Container(child: SizedBox(height: 0, width: 0));
   }
 
   @override
