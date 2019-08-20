@@ -46,6 +46,7 @@ class _SingleTeamScreenState extends State<SingleTeamScreen> {
                 child: Container(
                   color: CupertinoTheme.of(context).primaryContrastingColor,
                   height: 40,
+                  child: Text('This will be a searchbar... one day tho'),
                 ),
               ),
             ),

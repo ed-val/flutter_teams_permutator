@@ -122,6 +122,7 @@ class _TabsScreenState extends State<TabsScreen>
 
   @override
   void dispose() {
+    _cupertinoTabController.dispose();
     _pageController.dispose();
     super.dispose();
   }
