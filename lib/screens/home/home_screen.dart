@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:teams_permutator/screens/dummy/cupertino_dummy_screen.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
+import 'package:teams_permutator/widgets/persisten_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -25,38 +25,31 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        key: _homeKey,
-        child: CustomScrollView(
-          semanticChildCount: 1,
-          slivers: <Widget>[
-            CupertinoSliverNavigationBar(
-              transitionBetweenRoutes: true,
-              leading: const Text(''),
-              largeTitle: Text(''),
-              middle: Text('Willkommen'),
-            ),
-            SliverPadding(
-              padding: MediaQuery.of(context)
-                  .removePadding(
-                    removeTop: true,
-                    removeLeft: true,
-                    removeRight: true,
-                  )
-                  .padding,
-              sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    child: Center(
-                      child: buildNavButton(context),
-                    ),
-                  );
-                },
-                childCount: 1,
-              )),
-            ),
-          ],
-        ));
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: CupertinoTheme.of(context).primaryContrastingColor,
+        border: Border.all(color: Colors.white),
+        middle: Text('Willkommen'),
+        trailing: CupertinoButton(
+          child: FittedBox(child: Text('Bottom Sheet')),
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (ctx) => PersistentBottomSheetDemo(),
+              ),
+              // TabsScreen.routeName
+            );
+          },
+        ),
+      ),
+      child: Column(
+        children: <Widget>[
+          Center(
+            child: buildNavButton(context),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildNavButton(BuildContext context) {

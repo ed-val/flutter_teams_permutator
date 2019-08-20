@@ -24,31 +24,29 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
-      controller: _tabController,
+      // controller: _tabController,
       tabBar: CupertinoTabBar(
-        onTap: (int index) {
-          switch (index) {
-            case 0:
-              Navigator.pushReplacement(
-                context,
-                EnterExitRoute(
-                  exitPage: PermutatorScreen(),
-                  enterPage: SingleTeamScreen(),
-                ),
-              );
-              break;
-            case 1:
-              Navigator.pushReplacement(
-                context,
-                EnterExitRoute(
-                  exitPage: SingleTeamScreen(),
-                  enterPage: PermutatorScreen(),
-                ),
-              );
-              break;
-          }
-          return null;
-        },
+        // onTap: (int index) {
+        //   switch (index) {
+        //     case 0:
+        //       return Navigator.of(context, rootNavigator: true).pop(
+        //         EnterExitRoute(
+        //           exitPage: SingleTeamScreen(),
+        //           enterPage: PermutatorScreen(),
+        //         ),
+        //       );
+        //     // break;
+        //     case 1:
+        //       return Navigator.of(context, rootNavigator: true).pop(
+        //         EnterExitRoute(
+        //           exitPage: PermutatorScreen(),
+        //           enterPage: SingleTeamScreen(),
+        //         ),
+        //       );
+        //     // break;
+        //   }
+        //   return null;
+        // },
         border: const Border(
           top: BorderSide(
               color: Colors.transparent, width: 0.0, style: BorderStyle.solid),
@@ -72,14 +70,12 @@ class _TabsScreenState extends State<TabsScreen> {
       tabBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            // _tabController.index = 0;
             return CupertinoTabView(
               builder: (BuildContext context) => PermutatorScreen(),
               defaultTitle: 'Permutator',
             );
             break;
           case 1:
-            // _tabController.index = 1;
             return CupertinoTabView(
               builder: (BuildContext context) => SingleTeamScreen(),
               defaultTitle: 'Analize Team',

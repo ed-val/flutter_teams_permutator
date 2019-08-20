@@ -18,39 +18,23 @@ class _PermutatorScreenState extends State<PermutatorScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
         key: _permutatorKey,
         semanticChildCount: 1,
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
-            automaticallyImplyLeading: false,
-            largeTitle: Text('Permutator'),
             leading: CupertinoNavigationBarBackButton(
               previousPageTitle: 'Home',
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pushReplacement(
-                  CupertinoPageRoute(
+                  CupertinoPageRoute<HomeScreen>(
                     builder: (ctx) => HomeScreen(),
                   ),
                   // HomeScreen.routeName,
                 );
               },
             ),
-            transitionBetweenRoutes: true,
-            // previousPageTitle: 'Home',
             trailing: Icon(CupertinoIcons.add_circled),
-          ),
-          SliverPersistentHeader(
-            floating: true,
-            pinned: true,
-            delegate: SliverAppBarDelegate(
-              child: PreferredSize(
-                preferredSize: Size.fromHeight(40.0),
-                child: Container(
-                  color: CupertinoTheme.of(context).primaryContrastingColor,
-                  height: 40,
-                ),
-              ),
-            ),
           ),
           SliverPadding(
             // Top media padding consumed by CupertinoSliverNavigationBar.
