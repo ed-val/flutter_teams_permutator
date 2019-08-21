@@ -2,144 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-// This demo displays one Category at a time. The backdrop show a list
-// of all of the categories and the selected category is displayed
-// (CategoryView) on top of the backdrop.
-
-// class Category {
-//   const Category({this.title, this.assets});
-//   final String title;
-//   final List<String> assets;
-//   @override
-//   String toString() => '$runtimeType("$title")';
-// }
-
-// const List<Category> allCategories = <Category>[
-//   Category(
-//     title: 'Accessories',
-//     assets: <String>[
-//       'products/belt.png',
-//       'products/earrings.png',
-//       'products/backpack.png',
-//       'products/hat.png',
-//       'products/scarf.png',
-//       'products/sunnies.png',
-//     ],
-//   ),
-//   Category(
-//     title: 'Blue',
-//     assets: <String>[
-//       'products/backpack.png',
-//       'products/cup.png',
-//       'products/napkins.png',
-//       'products/top.png',
-//     ],
-//   ),
-//   Category(
-//     title: 'Cold Weather',
-//     assets: <String>[
-//       'products/jacket.png',
-//       'products/jumper.png',
-//       'products/scarf.png',
-//       'products/sweater.png',
-//       'products/sweats.png',
-//     ],
-//   ),
-//   Category(
-//     title: 'Home',
-//     assets: <String>[
-//       'products/cup.png',
-//       'products/napkins.png',
-//       'products/planters.png',
-//       'products/table.png',
-//       'products/teaset.png',
-//     ],
-//   ),
-//   Category(
-//     title: 'Tops',
-//     assets: <String>[
-//       'products/jumper.png',
-//       'products/shirt.png',
-//       'products/sweater.png',
-//       'products/top.png',
-//     ],
-//   ),
-//   Category(
-//     title: 'Everything',
-//     assets: <String>[
-//       'products/backpack.png',
-//       'products/belt.png',
-//       'products/cup.png',
-//       'products/dress.png',
-//       'products/earrings.png',
-//       'products/flatwear.png',
-//       'products/hat.png',
-//       'products/jacket.png',
-//       'products/jumper.png',
-//       'products/napkins.png',
-//       'products/planters.png',
-//       'products/scarf.png',
-//       'products/shirt.png',
-//       'products/sunnies.png',
-//       'products/sweater.png',
-//       'products/sweats.png',
-//       'products/table.png',
-//       'products/teaset.png',
-//       'products/top.png',
-//     ],
-//   ),
-// ];
-
-// class CategoryView extends StatelessWidget {
-//   const CategoryView({Key key, this.category}) : super(key: key);
-
-//   final Category category;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final ThemeData theme = Theme.of(context);
-//     return Scrollbar(
-//         child: ListView(
-//       key: PageStorageKey<Category>(category),
-//       padding: const EdgeInsets.symmetric(
-//         vertical: 16.0,
-//         horizontal: 64.0,
-//       ),
-//       children: category.assets.map<Widget>((String asset) {
-//         return Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           children: <Widget>[
-//             Card(
-//               child: Container(
-//                 width: 144.0,
-//                 alignment: Alignment.center,
-//                 child: Column(
-//                   children: <Widget>[
-//                     Image.asset(
-//                       asset,
-//                       package: 'flutter_gallery_assets',
-//                       fit: BoxFit.contain,
-//                     ),
-//                     Container(
-//                       padding: const EdgeInsets.only(bottom: 16.0),
-//                       alignment: AlignmentDirectional.center,
-//                       child: Text(
-//                         asset,
-//                         style: theme.textTheme.caption,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             const SizedBox(height: 24.0),
-//           ],
-//         );
-//       }).toList(),
-//     ));
-//   }
-// }
-
 // One BackdropPanel is visible at a time. It's stacked on top of the
 // the BackdropDemo.
 class BackdropPanel extends StatelessWidget {
@@ -162,7 +24,7 @@ class BackdropPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Material(
-      elevation: 4.0,
+      // elevation: 4.0,
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20.0),
         topRight: Radius.circular(20.0),
@@ -196,42 +58,6 @@ class BackdropPanel extends StatelessWidget {
   }
 }
 
-// Cross fades between 'Select a Category' and 'Asset Viewer'.
-// class BackdropTitle extends AnimatedWidget {
-//   const BackdropTitle({
-//     Key key,
-//     Listenable listenable,
-//   }) : super(key: key, listenable: listenable);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final Animation<double> animation = listenable;
-//     return DefaultTextStyle(
-//       style: Theme.of(context).primaryTextTheme.title,
-//       softWrap: false,
-//       overflow: TextOverflow.ellipsis,
-//       child: Stack(
-//         children: <Widget>[
-//           Opacity(
-//             opacity: CurvedAnimation(
-//               parent: ReverseAnimation(animation),
-//               curve: const Interval(0.5, 1.0),
-//             ).value,
-//             child: const Text('Select a Category'),
-//           ),
-//           Opacity(
-//             opacity: CurvedAnimation(
-//               parent: animation,
-//               curve: const Interval(0.5, 1.0),
-//             ).value,
-//             child: const Text('Asset Viewer'),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 // This widget is essentially the backdrop itself.
 class BackdropDemo extends StatefulWidget {
   static const String routeName = '/material/backdrop';
@@ -249,9 +75,11 @@ class _BackdropDemoState extends State<BackdropDemo>
   @override
   void initState() {
     super.initState();
+    // negative -2 value starts the backdrop collapsed. Use a positive 2.0
+    // to start widget expanded
     _controller = AnimationController(
       duration: const Duration(milliseconds: 400),
-      value: 1.0,
+      value: -2.0,
       vsync: this,
     );
   }
@@ -305,6 +133,7 @@ class _BackdropDemoState extends State<BackdropDemo>
     else if (flingVelocity > 0.0)
       _controller.fling(velocity: math.min(-2.0, -flingVelocity));
     else
+      // threshold now to either collapse or expand is 0.5 (about 62% through)
       _controller.fling(velocity: _controller.value < 0.5 ? -2.0 : 2.0);
   }
 
@@ -317,7 +146,6 @@ class _BackdropDemoState extends State<BackdropDemo>
     const double panelTitleHeight = 50.0;
     final Size panelSize = constraints.biggest;
     // print(panelSize.height);
-    print(MediaQuery.of(context).size.height);
     final double panelTop = panelSize.height - panelTitleHeight;
 
     final Animation<RelativeRect> panelAnimation = _controller.drive(
@@ -330,34 +158,30 @@ class _BackdropDemoState extends State<BackdropDemo>
         ),
         end: RelativeRect.fromLTRB(
           0.0,
-          MediaQuery.of(context).size.height * 0.60,
+          panelSize.height * 0.40,
           0.0,
           panelTop - panelSize.height,
         ),
       ),
     );
 
-    return Container(
-      // height: MediaQuery.of(context).size.height / 2,
+    return Stack(
       key: _backdropKey,
-      color: Colors.transparent,
-      child: Stack(
-        children: <Widget>[
-          PositionedTransition(
-            rect: panelAnimation,
-            child: BackdropPanel(
-              onTap: _toggleBackdropPanelVisibility,
-              onVerticalDragUpdate: _handleDragUpdate,
-              onVerticalDragEnd: _handleDragEnd,
-              title: Text('Perzonalized title'),
-              // child: CategoryView(category: _category),
-              child: Container(
-                child: Text('this is a container'),
-              ),
+      children: <Widget>[
+        PositionedTransition(
+          rect: panelAnimation,
+          child: BackdropPanel(
+            onTap: _toggleBackdropPanelVisibility,
+            onVerticalDragUpdate: _handleDragUpdate,
+            onVerticalDragEnd: _handleDragEnd,
+            title: Text('Perzonalized title'),
+            // child: CategoryView(category: _category),
+            child: Container(
+              child: Text('this is a container'),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

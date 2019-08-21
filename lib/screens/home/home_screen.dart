@@ -45,11 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
       ),
-      child: Column(
+      child: Stack(
         children: <Widget>[
           Center(
             child: buildNavButton(context),
           ),
+          BackdropDemo(),
         ],
       ),
     );
