@@ -39,7 +39,10 @@ class _TabsScreenState extends State<TabsScreen>
       },
       border: const Border(
         top: BorderSide(
-            color: Colors.transparent, width: 0.0, style: BorderStyle.solid),
+          color: Colors.transparent,
+          width: 0.0,
+          style: BorderStyle.solid,
+        ),
       ),
       activeColor: Colors.blue,
       backgroundColor: Colors.transparent, //get blurr efect
@@ -80,6 +83,9 @@ class _TabsScreenState extends State<TabsScreen>
           ),
         ),
         SizedBox(
+          // expectanse is to this height to be 0 in order to allow widgets
+          // to go underneath it
+          // TODO: pending check
           height: _cupertinoTabBar.preferredSize.height,
           child: CupertinoTabScaffold(
             resizeToAvoidBottomInset: true,
