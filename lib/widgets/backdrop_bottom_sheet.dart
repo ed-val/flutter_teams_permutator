@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // One BackdropPanel is visible at a time. It's stacked on top of the
@@ -22,13 +23,13 @@ class BackdropPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final CupertinoThemeData theme = CupertinoTheme.of(context);
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
-            blurRadius: 15.0, // has the effect of softening the shadow
+            color: Colors.black87,
+            blurRadius: 10.0, // has the effect of softening the shadow
             spreadRadius: 3.0, // has the effect of extending the shadow
             offset: Offset(
               0.0, // horizontal, move right 10
@@ -52,17 +53,45 @@ class BackdropPanel extends StatelessWidget {
               onVerticalDragUpdate: onVerticalDragUpdate,
               onVerticalDragEnd: onVerticalDragEnd,
               onTap: onTap,
-              child: Container(
-                height: 48.0,
-                padding: const EdgeInsetsDirectional.only(start: 16.0),
-                alignment: AlignmentDirectional.centerStart,
-                child: DefaultTextStyle(
-                  style: theme.textTheme.subhead,
-                  child: Tooltip(
-                    message: 'Tap to dismiss',
-                    child: title,
+              child: Column(
+                children: <Widget>[
+                  // Material(
+                  //   color: Colors.black,
+                  //   shape: RoundedRectangleBorder(
+                  //     side: BorderSide(
+                  //       width: MediaQuery.of(context).size.width * 0.2,
+                  //       color: Colors.blue,
+                  //     ),
+                  //     borderRadius: BorderRadius.all(Radius.circular(5)),
+                  //   ),
+                  // ),
+                  Container(
+                    margin: EdgeInsets.all(5),
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: MediaQuery.of(context).size.width * 0.006,
+                          color: theme.primaryContrastingColor,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
                   ),
-                ),
+                  Center(
+                    // height: 50.0,
+                    // padding: const EdgeInsets.symmetric(vertical: 16),
+                    // alignment: AlignmentDirectional.centerStart,
+                    child: DefaultTextStyle(
+                      style: theme.textTheme.textStyle,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: title,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             // const Divider(height: 1.0),
