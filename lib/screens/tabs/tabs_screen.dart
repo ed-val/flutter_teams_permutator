@@ -45,7 +45,7 @@ class _TabsScreenState extends State<TabsScreen>
         ),
       ),
       activeColor: Colors.blue,
-      backgroundColor: Colors.transparent, //get blurr efect
+      backgroundColor: CupertinoTheme.of(context).barBackgroundColor,
       inactiveColor: Colors.grey[300],
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(

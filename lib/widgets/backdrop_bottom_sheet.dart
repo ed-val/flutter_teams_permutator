@@ -23,37 +23,52 @@ class BackdropPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return Material(
-      // elevation: 4.0,
-
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(20.0),
-        topRight: Radius.circular(20.0),
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 15.0, // has the effect of softening the shadow
+            spreadRadius: 3.0, // has the effect of extending the shadow
+            offset: Offset(
+              0.0, // horizontal, move right 10
+              8.0, // vertical, move down 10
+            ),
+          )
+        ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onVerticalDragUpdate: onVerticalDragUpdate,
-            onVerticalDragEnd: onVerticalDragEnd,
-            onTap: onTap,
-            child: Container(
-              height: 48.0,
-              padding: const EdgeInsetsDirectional.only(start: 16.0),
-              alignment: AlignmentDirectional.centerStart,
-              child: DefaultTextStyle(
-                style: theme.textTheme.subhead,
-                child: Tooltip(
-                  message: 'Tap to dismiss',
-                  child: title,
+      child: Material(
+        // elevation: 4.0,
+        color: Colors.grey[50],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onVerticalDragUpdate: onVerticalDragUpdate,
+              onVerticalDragEnd: onVerticalDragEnd,
+              onTap: onTap,
+              child: Container(
+                height: 48.0,
+                padding: const EdgeInsetsDirectional.only(start: 16.0),
+                alignment: AlignmentDirectional.centerStart,
+                child: DefaultTextStyle(
+                  style: theme.textTheme.subhead,
+                  child: Tooltip(
+                    message: 'Tap to dismiss',
+                    child: title,
+                  ),
                 ),
               ),
             ),
-          ),
-          const Divider(height: 1.0),
-          Expanded(child: child),
-        ],
+            // const Divider(height: 1.0),
+            Expanded(child: child),
+          ],
+        ),
       ),
     );
   }
@@ -79,7 +94,7 @@ class _BackdropDemoState extends State<BackdropDemo>
     // negative -2 value starts the backdrop collapsed. Use a positive 2.0
     // to start widget expanded
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 450),
       value: -2.0,
       vsync: this,
     );

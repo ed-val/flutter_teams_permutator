@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:teams_permutator/screens/dummy/cupertino_dummy_screen.dart';
 import 'package:teams_permutator/screens/home/home_screen.dart';
 import 'package:teams_permutator/screens/permutator/permutator_screen.dart';
 import 'package:teams_permutator/screens/singleTeam/single_team_screen.dart';
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Permutator',
       theme: CupertinoThemeData(
         primaryColor: CupertinoColors.activeBlue,
-        primaryContrastingColor: CupertinoColors.lightBackgroundGray,
+        primaryContrastingColor: CupertinoColors.black,
         // dont use Colors.transparent: Current bug turns icons white
         barBackgroundColor: Colors.white10,
         textTheme: CupertinoTextThemeData(

@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: CupertinoTheme.of(context).primaryContrastingColor,
+        // backgroundColor: CupertinoTheme.of(context).barBackgroundColor,
         border: Border.all(color: Colors.white),
         middle: Text('Willkommen'),
         trailing: Padding(
