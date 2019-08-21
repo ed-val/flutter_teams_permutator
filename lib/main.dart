@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         // dont use Colors.transparent: Current bug turns icons white
         barBackgroundColor: Colors.white10,
         textTheme: CupertinoTextThemeData(
+          primaryColor: CupertinoColors.darkBackgroundGray,
           navTitleTextStyle: TextStyle(
             color: Colors.grey[850],
             fontSize: 32,

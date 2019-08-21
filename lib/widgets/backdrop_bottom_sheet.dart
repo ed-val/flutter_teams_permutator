@@ -86,7 +86,7 @@ class BackdropPanel extends StatelessWidget {
                     child: DefaultTextStyle(
                       style: theme.textTheme.textStyle,
                       child: Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(10),
                         child: title,
                       ),
                     ),
@@ -94,7 +94,12 @@ class BackdropPanel extends StatelessWidget {
                 ],
               ),
             ),
-            // const Divider(height: 1.0),
+            const Divider(
+              height: 2.0,
+              endIndent: 30,
+              indent: 30,
+              color: CupertinoColors.inactiveGray,
+            ),
             Expanded(child: child),
           ],
         ),
@@ -153,7 +158,7 @@ class _BackdropDemoState extends State<BackdropDemo>
 
   double get _backdropHeight {
     final RenderBox renderBox = _backdropKey.currentContext.findRenderObject();
-    //
+    // TODO: remove hardcode
     return renderBox.size.height * 0.60;
   }
 
@@ -220,10 +225,11 @@ class _BackdropDemoState extends State<BackdropDemo>
             onTap: _toggleBackdropPanelVisibility,
             onVerticalDragUpdate: _handleDragUpdate,
             onVerticalDragEnd: _handleDragEnd,
-            title: Text('Perzonalized title'),
+            title: Text('Press or drag to show content.'),
             // child: CategoryView(category: _category),
-            child: Container(
-              child: Text('this is a container'),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Text('lol jk, it ain shit here'),
             ),
           ),
         ),
