@@ -25,6 +25,7 @@ class BackdropPanel extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     return Material(
       // elevation: 4.0,
+
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20.0),
         topRight: Radius.circular(20.0),
@@ -108,7 +109,8 @@ class _BackdropDemoState extends State<BackdropDemo>
 
   double get _backdropHeight {
     final RenderBox renderBox = _backdropKey.currentContext.findRenderObject();
-    return renderBox.size.height;
+    //
+    return renderBox.size.height * 0.60;
   }
 
   // By design: the panel can only be opened with a swipe. To close the panel

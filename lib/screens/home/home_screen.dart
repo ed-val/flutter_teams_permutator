@@ -30,19 +30,22 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: CupertinoTheme.of(context).primaryContrastingColor,
         border: Border.all(color: Colors.white),
         middle: Text('Willkommen'),
-        trailing: CupertinoButton(
-          child: FittedBox(child: Text('Bottom Sheet')),
-          onPressed: () {
-            Navigator.push(
-              context,
-              CupertinoPageRoute(
-                fullscreenDialog: false,
-                title: 'Backdrop',
-                builder: (ctx) => BackdropDemo(),
-              ),
-              // TabsScreen.routeName
-            );
-          },
+        trailing: Padding(
+          padding: EdgeInsets.all(0),
+          child: CupertinoButton(
+            child: FittedBox(child: Text('Bottom Sheet')),
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   CupertinoPageRoute(
+              //     fullscreenDialog: false,
+              //     title: 'Backdrop',
+              //     builder: (ctx) => BackdropDemo(),
+              //   ),
+              //   // TabsScreen.routeName
+              // );
+            },
+          ),
         ),
       ),
       child: Stack(
