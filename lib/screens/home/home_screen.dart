@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Center(
             child: buildNavButton(context),
           ),
-          BackdropDemo(
+          BackdropBottomSheet(
             sidesBorder: 10.0,
             heightInPercentage: 0.55,
             child: Text('lol jk, aint shit here yet'),

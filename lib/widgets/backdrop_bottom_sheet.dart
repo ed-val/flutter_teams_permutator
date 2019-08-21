@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // One BackdropPanel is visible at a time. It's stacked on top of the
-// the BackdropDemo.
+// the BackdropBottomSheet.
 class BackdropPanel extends StatelessWidget {
   const BackdropPanel({
     Key key,
@@ -29,11 +29,11 @@ class BackdropPanel extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black87,
-            blurRadius: 15.0, // has the effect of softening the shadow
-            spreadRadius: 1.0, // has the effect of extending the shadow
+            blurRadius: 10.0, // has the effect of softening the shadow
+            spreadRadius: 0.0, // has the effect of extending the shadow
             offset: Offset(
               0.0, // horizontal, move right 10
-              5.0, // vertical, move down 10
+              0.0, // vertical, move down 10
             ),
           )
         ],
@@ -95,7 +95,7 @@ class BackdropPanel extends StatelessWidget {
   }
 }
 
-class BackdropDemo extends StatefulWidget {
+class BackdropBottomSheet extends StatefulWidget {
   /// How much real pixels away from the borders of the screen should the bottom sheet be.
   /// Expects a [double], defaults to [10.0].
   final double sidesBorder;
@@ -112,7 +112,7 @@ class BackdropDemo extends StatefulWidget {
   /// Default is 100%, meaning it will take all space available on screen.
   final double heightInPercentage;
 
-  const BackdropDemo({
+  const BackdropBottomSheet({
     Key key,
     this.sidesBorder = 10.0,
     this.heightInPercentage = 1.0,
@@ -122,10 +122,10 @@ class BackdropDemo extends StatefulWidget {
   static const String routeName = '/material/backdrop';
 
   @override
-  _BackdropDemoState createState() => _BackdropDemoState();
+  _BackdropBottomSheetState createState() => _BackdropBottomSheetState();
 }
 
-class _BackdropDemoState extends State<BackdropDemo>
+class _BackdropBottomSheetState extends State<BackdropBottomSheet>
     with SingleTickerProviderStateMixin {
   final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop');
   AnimationController _controller;
