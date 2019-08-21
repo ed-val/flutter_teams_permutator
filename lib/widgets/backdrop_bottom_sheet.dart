@@ -29,11 +29,11 @@ class BackdropPanel extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black87,
-            blurRadius: 10.0, // has the effect of softening the shadow
-            spreadRadius: 3.0, // has the effect of extending the shadow
+            blurRadius: 15.0, // has the effect of softening the shadow
+            spreadRadius: 1.0, // has the effect of extending the shadow
             offset: Offset(
               0.0, // horizontal, move right 10
-              8.0, // vertical, move down 10
+              5.0, // vertical, move down 10
             ),
           )
         ],
@@ -96,6 +96,10 @@ class BackdropPanel extends StatelessWidget {
 }
 
 class BackdropDemo extends StatefulWidget {
+  /// How much real pixels away from the borders of the screen should the bottom sheet be.
+  /// Expects a [double], defaults to [10.0].
+  final double sidesBorder;
+
   /// Title to show in the header thats always displayed even when sheet is collapsed. Expects a [String]
   final String titleHeader;
 
@@ -110,6 +114,7 @@ class BackdropDemo extends StatefulWidget {
 
   const BackdropDemo({
     Key key,
+    this.sidesBorder = 10.0,
     this.heightInPercentage = 1.0,
     this.titleHeader,
     this.child,
@@ -205,15 +210,15 @@ class _BackdropDemoState extends State<BackdropDemo>
     final Animation<RelativeRect> panelAnimation = _controller.drive(
       RelativeRectTween(
         begin: RelativeRect.fromLTRB(
-          0.0,
+          widget.sidesBorder,
           panelTop - MediaQuery.of(context).padding.bottom,
-          0.0,
+          widget.sidesBorder,
           panelTop - panelSize.height,
         ),
         end: RelativeRect.fromLTRB(
-          0.0,
+          widget.sidesBorder,
           panelSize.height * (1.0 - widget.heightInPercentage),
-          0.0,
+          widget.sidesBorder,
           panelTop - panelSize.height,
         ),
       ),

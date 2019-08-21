@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: buildNavButton(context),
           ),
           BackdropDemo(
+            sidesBorder: 10.0,
             heightInPercentage: 0.55,
             child: Text('lol jk, aint shit here yet'),
             titleHeader: 'Drag or press to show content',
