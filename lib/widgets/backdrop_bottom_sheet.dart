@@ -55,16 +55,6 @@ class BackdropPanel extends StatelessWidget {
               onTap: onTap,
               child: Column(
                 children: <Widget>[
-                  // Material(
-                  //   color: Colors.black,
-                  //   shape: RoundedRectangleBorder(
-                  //     side: BorderSide(
-                  //       width: MediaQuery.of(context).size.width * 0.2,
-                  //       color: Colors.blue,
-                  //     ),
-                  //     borderRadius: BorderRadius.all(Radius.circular(5)),
-                  //   ),
-                  // ),
                   Container(
                     margin: EdgeInsets.all(5),
                     width: MediaQuery.of(context).size.width * 0.15,
@@ -80,9 +70,6 @@ class BackdropPanel extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    // height: 50.0,
-                    // padding: const EdgeInsets.symmetric(vertical: 16),
-                    // alignment: AlignmentDirectional.centerStart,
                     child: DefaultTextStyle(
                       style: theme.textTheme.textStyle,
                       child: Padding(
@@ -108,8 +95,25 @@ class BackdropPanel extends StatelessWidget {
   }
 }
 
-// This widget is essentially the backdrop itself.
 class BackdropDemo extends StatefulWidget {
+  /// Title to show in the header thats always displayed even when sheet is collapsed. Expects a [String]
+  final String titleHeader;
+
+  /// Child to pass on to the sheet, this will be render inside the sheet content spaces. Expexts any kind of [Widget].
+  final Widget child;
+
+  /// How far should the height of the bottom sheet go. JUST for the available space.
+  /// Expects a [double] between [0.0 - 1.0], i.e. a value of 0.60 would make the sheet expand up to
+  /// a 60% of the available space in screen IGNORING MediaQuery padding values and navigation header.
+  /// Default is 100%, meaning it will take all space available on screen.
+  final double heightInPercentage;
+
+  const BackdropDemo({
+    Key key,
+    this.heightInPercentage = 1.0,
+    this.titleHeader,
+    this.child,
+  }) : super(key: key);
   static const String routeName = '/material/backdrop';
 
   @override
@@ -158,8 +162,7 @@ class _BackdropDemoState extends State<BackdropDemo>
 
   double get _backdropHeight {
     final RenderBox renderBox = _backdropKey.currentContext.findRenderObject();
-    // TODO: remove hardcode
-    return renderBox.size.height * 0.60;
+    return renderBox.size.height * widget.heightInPercentage;
   }
 
   // By design: the panel can only be opened with a swipe. To close the panel
@@ -209,7 +212,7 @@ class _BackdropDemoState extends State<BackdropDemo>
         ),
         end: RelativeRect.fromLTRB(
           0.0,
-          panelSize.height * 0.40,
+          panelSize.height * (1.0 - widget.heightInPercentage),
           0.0,
           panelTop - panelSize.height,
         ),
@@ -225,11 +228,11 @@ class _BackdropDemoState extends State<BackdropDemo>
             onTap: _toggleBackdropPanelVisibility,
             onVerticalDragUpdate: _handleDragUpdate,
             onVerticalDragEnd: _handleDragEnd,
-            title: Text('Press or drag to show content.'),
+            title: Text(widget.titleHeader),
             // child: CategoryView(category: _category),
             child: Padding(
               padding: EdgeInsets.all(10),
-              child: Text('lol jk, it ain shit here'),
+              child: widget.child,
             ),
           ),
         ),

@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static const IconData searchIcon = IconData(0xf4a7,
+      fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
   GlobalKey<FormState> _homeKey =
       GlobalKey<FormState>(debugLabel: '_homeScreenkey');
   @override
@@ -28,24 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         backgroundColor: Colors.grey[50],
+        automaticallyImplyLeading: true,
         // backgroundColor: CupertinoTheme.of(context).barBackgroundColor,
         border: Border.all(color: Colors.white),
         middle: Text('Willkommen'),
-        trailing: Padding(
-          padding: EdgeInsets.all(0),
+        trailing: Container(
+          // compensate for parent's padding
+          transform: Matrix4.translationValues(0.0, -10, 0.0),
           child: CupertinoButton(
-            child: FittedBox(child: Text('Bottom Sheet')),
-            onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   CupertinoPageRoute(
-              //     fullscreenDialog: false,
-              //     title: 'Backdrop',
-              //     builder: (ctx) => BackdropDemo(),
-              //   ),
-              //   // TabsScreen.routeName
-              // );
-            },
+            child: Icon(
+              searchIcon,
+              color: CupertinoTheme.of(context).primaryColor,
+              size: 24.0,
+            ),
+            onPressed: () {},
           ),
         ),
       ),
@@ -54,7 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Center(
             child: buildNavButton(context),
           ),
-          BackdropDemo(),
+          BackdropDemo(
+            heightInPercentage: 0.55,
+            child: Text('lol jk, aint shit here yet'),
+            titleHeader: 'Drag or press to show content',
+          ),
         ],
       ),
     );
