@@ -28,8 +28,8 @@ class BackdropPanel extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black87,
-            blurRadius: 10.0, // has the effect of softening the shadow
+            color: Colors.black45,
+            blurRadius: 20.0, // has the effect of softening the shadow
             spreadRadius: 0.0, // has the effect of extending the shadow
             offset: Offset(
               0.0, // horizontal, move right 10

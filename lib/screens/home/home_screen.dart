@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.grey[50],
         automaticallyImplyLeading: true,
         // backgroundColor: CupertinoTheme.of(context).barBackgroundColor,
-        border: Border.all(color: Colors.white),
+        // border: Border.all(color: Colors.white),
         middle: Text('Willkommen'),
         trailing: Container(
           // compensate for parent's padding
