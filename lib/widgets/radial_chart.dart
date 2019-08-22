@@ -16,7 +16,7 @@ class _RadialChartState extends State<RadialChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
       child: getAngleRadialBarChart(false),
     );
   }
@@ -26,10 +26,11 @@ SfCircularChart getAngleRadialBarChart(bool isTileView) {
   return SfCircularChart(
     title: ChartTitle(text: isTileView ? '' : 'Activity tracker'),
     legend: Legend(
-        isVisible: true,
-        iconHeight: 20,
-        iconWidth: 20,
-        overflowMode: LegendItemOverflowMode.wrap),
+      isVisible: true,
+      iconHeight: 20,
+      iconWidth: 20,
+      overflowMode: LegendItemOverflowMode.wrap,
+    ),
     tooltipBehavior: TooltipBehavior(enable: true, format: 'point.x'),
     series: getRadialBarSeries(isTileView),
   );

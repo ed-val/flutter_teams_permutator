@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // border: Border.all(color: Colors.white),
         middle: Text('Willkommen'),
         trailing: Container(
-          // compensate for parent's padding
+          // compensate for unavoidable parent's padding
           transform: Matrix4.translationValues(0.0, -10, 0.0),
           child: CupertinoButton(
             child: Icon(
