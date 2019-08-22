@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 import 'package:teams_permutator/widgets/backdrop_bottom_sheet.dart';
+import 'package:teams_permutator/widgets/radial_chart.dart';
 // import 'package:teams_permutator/widgets/persisten_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -43,15 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
               color: CupertinoTheme.of(context).primaryColor,
               size: 24.0,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                CupertinoPageRoute(
+                  builder: (ctx) => TabsScreen(),
+                ),
+                // TabsScreen.routeName
+              );
+            },
           ),
         ),
       ),
       child: Stack(
         children: <Widget>[
-          Center(
-            child: buildNavButton(context),
-          ),
+          RadialChart(),
           BackdropBottomSheet(
             sidesBorder: 10.0,
             heightInPercentage: 0.55,
@@ -59,28 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
             titleHeader: 'Drag or press to show content',
           ),
         ],
-      ),
-    );
-  }
-
-  Widget buildNavButton(BuildContext context) {
-    return Container(
-      child: CupertinoButton(
-        child: Row(
-          children: <Widget>[
-            Text('Go check teams!'),
-            Icon(CupertinoIcons.right_chevron)
-          ],
-        ),
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            CupertinoPageRoute(
-              builder: (ctx) => TabsScreen(),
-            ),
-            // TabsScreen.routeName
-          );
-        },
       ),
     );
   }
