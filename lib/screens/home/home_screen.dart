@@ -29,37 +29,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        backgroundColor: Colors.grey[50],
-        automaticallyImplyLeading: true,
-        // backgroundColor: CupertinoTheme.of(context).barBackgroundColor,
-        // border: Border.all(color: Colors.white),
-        middle: Text('Willkommen'),
-        trailing: CupertinoButton(
-          child: Container(
-            // compensate for unavoidable parent's padding
-            transform: Matrix4.translationValues(0.0, -10, 0.0),
-            child: Text(
-              'Teams',
-              overflow: TextOverflow.visible,
-            ),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              CupertinoPageRoute(
-                builder: (ctx) => TabsScreen(),
-              ),
-              // TabsScreen.routeName
-            );
-          },
-        ),
-      ),
       child: Stack(
         children: <Widget>[
-          CupertinoContainer(
-            child: RadialChart(),
+          CustomScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: buildCupertinoNavigationBar(),
+              ),
+              SliverGrid.count(
+                crossAxisCount: orientation == Orientation.landscape ? 2 : 1,
+                children: <Widget>[
+                  CupertinoContainer(
+                    child: RadialChart(),
+                  ),
+                  CupertinoContainer(
+                    child: RadialChart(),
+                  ),
+                  CupertinoContainer(
+                    child: RadialChart(),
+                  ),
+                  CupertinoContainer(
+                    child: RadialChart(),
+                  ),
+                  CupertinoContainer(
+                    child: RadialChart(),
+                  ),
+                ],
+              )
+            ],
           ),
           BackdropBottomSheet(
             sidesBorder: 10.0,
@@ -68,6 +68,34 @@ class _HomeScreenState extends State<HomeScreen> {
             titleHeader: 'Drag or press to show content',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildCupertinoNavigationBar() {
+    return CupertinoNavigationBar(
+      backgroundColor: Colors.grey[50],
+      automaticallyImplyLeading: true,
+      middle: Text('Willkommen'),
+      trailing: CupertinoButton(
+        child: Container(
+          // compensate for unavoidable parent's padding
+          transform: Matrix4.translationValues(0.0, -10, 0.0),
+          child: Text(
+            'Teams',
+            // fixed trimmed text caused for parent's padding
+            overflow: TextOverflow.visible,
+          ),
+        ),
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            CupertinoPageRoute(
+              builder: (ctx) => TabsScreen(),
+            ),
+            // TabsScreen.routeName
+          );
+        },
       ),
     );
   }
