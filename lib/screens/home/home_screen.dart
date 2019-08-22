@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 import 'package:teams_permutator/widgets/backdrop_bottom_sheet.dart';
+import 'package:teams_permutator/widgets/cupertino_container.dart';
 import 'package:teams_permutator/widgets/radial_chart.dart';
 // import 'package:teams_permutator/widgets/persisten_bottom_sheet.dart';
 
@@ -35,30 +36,31 @@ class _HomeScreenState extends State<HomeScreen> {
         // backgroundColor: CupertinoTheme.of(context).barBackgroundColor,
         // border: Border.all(color: Colors.white),
         middle: Text('Willkommen'),
-        trailing: Container(
-          // compensate for unavoidable parent's padding
-          transform: Matrix4.translationValues(0.0, -10, 0.0),
-          child: CupertinoButton(
-            child: Icon(
-              searchIcon,
-              color: CupertinoTheme.of(context).primaryColor,
-              size: 24.0,
+        trailing: CupertinoButton(
+          child: Container(
+            // compensate for unavoidable parent's padding
+            transform: Matrix4.translationValues(0.0, -10, 0.0),
+            child: Text(
+              'Teams',
+              overflow: TextOverflow.visible,
             ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                CupertinoPageRoute(
-                  builder: (ctx) => TabsScreen(),
-                ),
-                // TabsScreen.routeName
-              );
-            },
           ),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              CupertinoPageRoute(
+                builder: (ctx) => TabsScreen(),
+              ),
+              // TabsScreen.routeName
+            );
+          },
         ),
       ),
       child: Stack(
         children: <Widget>[
-          RadialChart(),
+          CupertinoContainer(
+            child: RadialChart(),
+          ),
           BackdropBottomSheet(
             sidesBorder: 10.0,
             heightInPercentage: 0.55,
