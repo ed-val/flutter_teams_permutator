@@ -17,7 +17,7 @@ class _RadialChartState extends State<RadialChart> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: getAngleRadialBarChart(false),
+      child: getAngleRadialBarChart(true),
     );
   }
 }
@@ -47,10 +47,11 @@ List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(bool isTileView) {
   ];
   var list = <RadialBarSeries<_RadialData, String>>[
     RadialBarSeries<_RadialData, String>(
+        animationDuration: 1200,
         pointRadiusMapper: (_RadialData data, _) => data.radius,
         maximumValue: 100,
         radius: '100%',
-        gap: '2%',
+        gap: '15%',
         innerRadius: '30%',
         dataSource: chartData,
         cornerStyle: CornerStyle.bothCurve,

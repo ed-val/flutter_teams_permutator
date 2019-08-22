@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 
 class CupertinoContainer extends StatelessWidget {
   final Widget child;
-  CupertinoContainer({Key key, this.child}) : super(key: key);
+  final double height;
+  final double width;
+  CupertinoContainer({Key key, this.child, this.height, this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
+      width: width,
       child: child,
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(10),

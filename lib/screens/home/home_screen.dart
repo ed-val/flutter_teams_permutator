@@ -49,7 +49,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: RadialChart(),
                   ),
                   CupertinoContainer(
-                    child: RadialChart(),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 3,
+                          child: RadialChart(),
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: Column(
+                            children: <Widget>[
+                              Text('(LOGO) FBC vs. REAL MADRID (LOGO)'),
+                              Text('Score as visitant: 14'),
+                              Text('Score at home: 19'),
+                              Text('Dominion over oponent: +3'),
+                              Text(
+                                'Disputes with this outcome: 5 out of 7 (71.4%)',
+                              ),
+                              Text('CORRELATION OVERALL SCORE: ( 95 )'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   CupertinoContainer(
                     child: RadialChart(),
