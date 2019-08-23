@@ -28,6 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(context).orientation;
     return CupertinoPageScaffold(
@@ -40,45 +45,75 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: buildCupertinoNavigationBar(),
               ),
               SliverGrid.count(
+                // this aspect ratio WILL DETERMINE CONTAINER'S SIZE (height) !!!!
+                childAspectRatio: 40 / 25,
                 crossAxisCount: orientation == Orientation.landscape ? 2 : 1,
                 children: <Widget>[
-                  CupertinoContainer(
-                    child: RadialChart(),
-                  ),
-                  CupertinoContainer(
-                    child: RadialChart(),
-                  ),
+                  // CupertinoContainer(
+                  //   child: RadialChart(
+                  //     drawPercentage: 5,
+                  //     losePercentage: 43,
+                  //     winPercentage: 84,
+                  //     team: 'Bayern München FB',
+                  //   ),
+                  // ),
+                  // CupertinoContainer(
+                  //   child: RadialChart(
+                  //     drawPercentage: 5,
+                  //     losePercentage: 43,
+                  //     winPercentage: 84,
+                  //     team: 'Bayern München FB',
+                  //   ),
+                  // ),
                   CupertinoContainer(
                     child: Row(
                       children: <Widget>[
                         Expanded(
                           flex: 3,
-                          child: RadialChart(),
+                          child: RadialChart(
+                            drawPercentage: 5,
+                            losePercentage: 43,
+                            winPercentage: 84,
+                            team: 'Bayern München FB',
+                          ),
                         ),
                         Expanded(
                           flex: 5,
-                          child: Column(
-                            children: <Widget>[
-                              Text('(LOGO) FBC vs. REAL MADRID (LOGO)'),
-                              Text('Score as visitant: 14'),
-                              Text('Score at home: 19'),
-                              Text('Dominion over oponent: +3'),
-                              Text(
-                                'Disputes with this outcome: 5 out of 7 (71.4%)',
-                              ),
-                              Text('CORRELATION OVERALL SCORE: ( 95 )'),
-                            ],
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              children: <Widget>[
+                                Text('(LOGO) FBC vs. REAL MADRID (LOGO)'),
+                                Text('Score as visitant: 14'),
+                                Text('Score at home: 19'),
+                                Text('Dominion over oponent: +3'),
+                                Text(
+                                  'Disputes with this outcome: 5 out of 7 (71.4%)',
+                                ),
+                                Text('CORRELATION OVERALL SCORE: ( 95 )'),
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  CupertinoContainer(
-                    child: RadialChart(),
-                  ),
-                  CupertinoContainer(
-                    child: RadialChart(),
-                  ),
+                  // CupertinoContainer(
+                  //   child: RadialChart(
+                  //     drawPercentage: 5,
+                  //     losePercentage: 43,
+                  //     winPercentage: 84,
+                  //     team: 'Bayern München FB',
+                  //   ),
+                  // ),
+                  // CupertinoContainer(
+                  //   child: RadialChart(
+                  //     drawPercentage: 5,
+                  //     losePercentage: 43,
+                  //     winPercentage: 84,
+                  //     team: 'Bayern München FB',
+                  //   ),
+                  // ),
                 ],
               )
             ],

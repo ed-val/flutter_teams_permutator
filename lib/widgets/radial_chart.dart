@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -6,8 +7,10 @@ class RadialChart extends StatefulWidget {
   final int losePercentage;
   final int drawPercentage;
   final String team;
+  final double chartHeight;
   RadialChart({
     Key key,
+    this.chartHeight,
     this.winPercentage,
     this.drawPercentage,
     this.losePercentage,
@@ -28,18 +31,25 @@ class _RadialChartState extends State<RadialChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 200,
       child: SfCircularChart(
-        borderWidth: 1,
-        borderColor: Colors.red,
-
-        // title: ChartTitle(text: isTileView ? '' : 'Activity tracker'),
+        margin: EdgeInsets.all(5),
         legend: Legend(
+          padding: 0.0,
           isVisible: true,
           iconHeight: 20,
           iconWidth: 20,
+          width: '100%',
+          alignment: ChartAlignment.near,
           overflowMode: LegendItemOverflowMode.wrap,
         ),
-        tooltipBehavior: TooltipBehavior(enable: true, format: 'point.x'),
+        tooltipBehavior: TooltipBehavior(
+          color: CupertinoTheme.of(context).primaryColor,
+          enable: true,
+          format: 'point.x',
+          animationDuration: 1000,
+          activationMode: ActivationMode.singleTap,
+        ),
         series: getRadialBarSeries(
           widget.winPercentage,
           widget.losePercentage,
@@ -70,25 +80,25 @@ List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(
 ) {
   final List<_RadialData> chartData = <_RadialData>[
     _RadialData(
-      'Move $winPercentage%\n$team wins match.',
-      winPercentage,
-      'Win  ',
+      'DRAW $drawPercentage%\n$team \ndraw the match.',
+      drawPercentage,
+      'Draw  ',
       null,
-      getColorForRadial(winPercentage),
+      getColorForRadial(drawPercentage),
     ),
     _RadialData(
-      'Exercise $losePercentage%\n$team loses match.',
+      'LOSE $losePercentage%\n$team \nloses match.',
       losePercentage,
       'Lose  ',
       null,
       getColorForRadial(losePercentage),
     ),
     _RadialData(
-      'Stand $drawPercentage%\n$team draw the match.',
-      drawPercentage,
-      'Draw  ',
+      'WIN $winPercentage%\n$team \nwins match.',
+      winPercentage,
+      'Win  ',
       null,
-      getColorForRadial(drawPercentage),
+      getColorForRadial(winPercentage),
     ),
   ];
   var list = <RadialBarSeries<_RadialData, String>>[
@@ -98,7 +108,8 @@ List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(
       maximumValue: 100,
       radius: '100%',
       gap: '12%',
-      innerRadius: '25%',
+      enableSmartLabels: true,
+      innerRadius: '40%',
       dataSource: chartData,
       cornerStyle: CornerStyle.bothCurve,
       xValueMapper: (_RadialData data, _) => data.xVal,
