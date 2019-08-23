@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
+import 'package:teams_permutator/screens/home/correlation_item.dart';
 import 'package:teams_permutator/widgets/backdrop_bottom_sheet.dart';
-import 'package:teams_permutator/widgets/cupertino_container.dart';
-import 'package:teams_permutator/widgets/radial_chart.dart';
-// import 'package:teams_permutator/widgets/persisten_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -65,39 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //     team: 'Bayern München FB',
                   //   ),
                   // ),
-                  CupertinoContainer(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 3,
-                          child: RadialChart(
-                            drawPercentage: 5,
-                            losePercentage: 43,
-                            winPercentage: 84,
-                            team: 'Bayern München FB',
-                          ),
-                        ),
-                        Expanded(
-                          flex: 5,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Column(
-                              children: <Widget>[
-                                Text('(LOGO) FBC vs. REAL MADRID (LOGO)'),
-                                Text('Score as visitant: 14'),
-                                Text('Score at home: 19'),
-                                Text('Dominion over oponent: +3'),
-                                Text(
-                                  'Disputes with this outcome: 5 out of 7 (71.4%)',
-                                ),
-                                Text('CORRELATION OVERALL SCORE: ( 95 )'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  CorrelationItem(),
                   // CupertinoContainer(
                   //   child: RadialChart(
                   //     drawPercentage: 5,
