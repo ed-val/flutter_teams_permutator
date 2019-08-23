@@ -16,15 +16,15 @@ class _RadialChartState extends State<RadialChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: getAngleRadialBarChart(true),
+    return Container(
+      child: getAngleRadialBarChart(),
     );
   }
 }
 
-SfCircularChart getAngleRadialBarChart(bool isTileView) {
+SfCircularChart getAngleRadialBarChart() {
   return SfCircularChart(
-    title: ChartTitle(text: isTileView ? '' : 'Activity tracker'),
+    // title: ChartTitle(text: isTileView ? '' : 'Activity tracker'),
     legend: Legend(
       isVisible: true,
       iconHeight: 20,
@@ -32,26 +32,42 @@ SfCircularChart getAngleRadialBarChart(bool isTileView) {
       overflowMode: LegendItemOverflowMode.wrap,
     ),
     tooltipBehavior: TooltipBehavior(enable: true, format: 'point.x'),
-    series: getRadialBarSeries(isTileView),
+    series: getRadialBarSeries(),
   );
 }
 
-List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(bool isTileView) {
+Color getColorForRadial(int percentage) {
+  if (percentage >= 0 && percentage <= 32) {
+    return Colors.red[300];
+  } else if (percentage >= 33 && percentage <= 65) {
+    return Colors.yellow[300];
+  } else if (percentage >= 66) {
+    return Colors.green[300];
+  }
+  return Colors.black;
+}
+
+List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(
+  int winPercentage,
+  int losePercentage,
+  int drawPercentage,
+  String team,
+) {
   final List<_RadialData> chartData = <_RadialData>[
-    _RadialData('Move 65%\n338/520 CAL', 65, 'Move  ', null,
-        Color.fromRGBO(0, 201, 230, 1.0)),
-    _RadialData('Exercise 43%\n13/30 MIN', 43, 'Exercise  ', null,
-        Color.fromRGBO(63, 224, 0, 1.0)),
-    _RadialData('Stand 58%\n7/12 HR', 58, 'Stand  ', null,
-        Color.fromRGBO(226, 1, 26, 1.0)),
+    _RadialData('Move $winPercentage%\n$team wins match.', winPercentage,
+        'Win  ', null, getColorForRadial(winPercentage)),
+    _RadialData('Exercise $losePercentage%\n$team loses match.', losePercentage,
+        'Lose  ', null, getColorForRadial(losePercentage)),
+    _RadialData('Stand $drawPercentage%\n$team draw the match.', drawPercentage,
+        'Draw  ', null, getColorForRadial(drawPercentage)),
   ];
   var list = <RadialBarSeries<_RadialData, String>>[
     RadialBarSeries<_RadialData, String>(
-        animationDuration: 1200,
+        animationDuration: 1300,
         pointRadiusMapper: (_RadialData data, _) => data.radius,
         maximumValue: 100,
         radius: '100%',
-        gap: '15%',
+        gap: '12%',
         innerRadius: '30%',
         dataSource: chartData,
         cornerStyle: CornerStyle.bothCurve,
