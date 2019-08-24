@@ -47,39 +47,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 childAspectRatio: 40 / 25,
                 crossAxisCount: orientation == Orientation.landscape ? 2 : 1,
                 children: <Widget>[
-                  // CupertinoContainer(
-                  //   child: RadialChart(
-                  //     drawPercentage: 5,
-                  //     losePercentage: 43,
-                  //     winPercentage: 84,
-                  //     team: 'Bayern München FB',
-                  //   ),
-                  // ),
-                  // CupertinoContainer(
-                  //   child: RadialChart(
-                  //     drawPercentage: 5,
-                  //     losePercentage: 43,
-                  //     winPercentage: 84,
-                  //     team: 'Bayern München FB',
-                  //   ),
-                  // ),
-                  CorrelationItem(),
-                  // CupertinoContainer(
-                  //   child: RadialChart(
-                  //     drawPercentage: 5,
-                  //     losePercentage: 43,
-                  //     winPercentage: 84,
-                  //     team: 'Bayern München FB',
-                  //   ),
-                  // ),
-                  // CupertinoContainer(
-                  //   child: RadialChart(
-                  //     drawPercentage: 5,
-                  //     losePercentage: 43,
-                  //     winPercentage: 84,
-                  //     team: 'Bayern München FB',
-                  //   ),
-                  // ),
+                  CorrelationItem(
+                    awayScore: 3,
+                    homeScore: 4,
+                    teamAway: 'REAL MADRID',
+                    teamHome: 'BAYERN MUNCHEN',
+                    dominion: -1,
+                    // implement enums
+                    tier: 'gold',
+                    correlationScore: 95,
+                  ),
                 ],
               )
             ],
