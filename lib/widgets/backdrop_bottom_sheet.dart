@@ -40,7 +40,7 @@ class BackdropPanel extends StatelessWidget {
       ),
       child: Material(
         // elevation: 4.0,
-        color: Colors.grey[50],
+        color: CupertinoTheme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:teams_permutator/screens/home/home_screen.dart';
-import 'package:teams_permutator/screens/permutator/permutator_screen.dart';
-import 'package:teams_permutator/screens/singleTeam/single_team_screen.dart';
+// import 'package:teams_permutator/screens/permutator/permutator_screen.dart';
+// import 'package:teams_permutator/screens/singleTeam/single_team_screen.dart';
 import 'package:teams_permutator/screens/tabs/tabs_screen.dart';
 import 'package:flutter/services.dart';
 
@@ -26,13 +26,19 @@ class MyApp extends StatelessWidget {
       theme: CupertinoThemeData(
         primaryColor: CupertinoColors.activeBlue,
         primaryContrastingColor: CupertinoColors.inactiveGray,
+        scaffoldBackgroundColor: Colors.white,
         // dont use Colors.transparent: Current bug turns icons white
         barBackgroundColor: Colors.white10,
         textTheme: CupertinoTextThemeData(
-          // primaryColor: CupertinoColors.darkBackgroundGray,
-          navTitleTextStyle: TextStyle(
+          navLargeTitleTextStyle: TextStyle(
             color: Colors.grey[850],
             fontSize: 32,
+            fontFamily: 'SF UI Display',
+            fontWeight: FontWeight.w700,
+          ),
+          navTitleTextStyle: TextStyle(
+            color: Colors.grey[850],
+            fontSize: 24,
             fontFamily: 'SF UI Display',
             fontWeight: FontWeight.w700,
           ),
