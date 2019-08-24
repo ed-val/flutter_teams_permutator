@@ -11,6 +11,7 @@ class CorrelationItem extends StatefulWidget {
   final int dominion;
   final int correlationScore;
   final String tier;
+  final String selectedTeam;
   CorrelationItem({
     Key key,
     this.tier,
@@ -20,6 +21,7 @@ class CorrelationItem extends StatefulWidget {
     this.homeScore,
     this.teamAway,
     this.teamHome,
+    this.selectedTeam,
   }) : super(key: key);
 
   _CorrelationItemState createState() => _CorrelationItemState();
@@ -37,28 +39,44 @@ class _CorrelationItemState extends State<CorrelationItem> {
     return Colors.black;
   }
 
-  Color _tierColor(int correlationScore) {
-    if (correlationScore <= 10) {
-      return Colors.red[900];
-    } else if (correlationScore > 10 && correlationScore <= 20) {
-      return Colors.red;
-    } else if (correlationScore > 20 && correlationScore <= 30) {
-      return Colors.orange[900];
-    } else if (correlationScore > 30 && correlationScore <= 40) {
-      return Colors.orange;
-    } else if (correlationScore > 40 && correlationScore <= 50) {
-      return Colors.yellow[800];
-    } else if (correlationScore > 50 && correlationScore <= 60) {
-      return Colors.yellow[400];
-    } else if (correlationScore > 60 && correlationScore <= 70) {
-      return Colors.green;
-    } else if (correlationScore > 70 && correlationScore <= 80) {
-      return Colors.lightGreen[800];
-    } else if (correlationScore > 80 && correlationScore <= 90) {
-      return Colors.blue[900];
-    } else if (correlationScore > 90 && correlationScore <= 100) {
-      return Colors.black;
+  Color _tierColor(String tier) {
+    if (tier == 'bronze') {
+      return Colors.brown[300];
+    } else if (tier == 'silver') {
+      return Colors.grey[350];
+    } else if (tier == 'gold') {
+      return Colors.amber[300];
+    } else if (tier == 'platinum') {
+      return Colors.blueGrey[400];
+    } else if (tier == 'diamond') {
+      return Colors.pink[900];
     }
+    return Colors.white;
+  }
+
+  Map<String, Color> _correlationOverallColor(int correlationScore) {
+    if (correlationScore <= 10) {
+      return {'color': Colors.red[900], 'text': Colors.white};
+    } else if (correlationScore > 10 && correlationScore <= 20) {
+      return {'color': Colors.red, 'text': Colors.white};
+    } else if (correlationScore > 20 && correlationScore <= 30) {
+      return {'color': Colors.orange[900], 'text': Colors.white};
+    } else if (correlationScore > 30 && correlationScore <= 40) {
+      return {'color': Colors.orange, 'text': Colors.black};
+    } else if (correlationScore > 40 && correlationScore <= 50) {
+      return {'color': Colors.yellow[800], 'text': Colors.black};
+    } else if (correlationScore > 50 && correlationScore <= 60) {
+      return {'color': Colors.yellow[400], 'text': Colors.black};
+    } else if (correlationScore > 60 && correlationScore <= 70) {
+      return {'color': Colors.green, 'text': Colors.white};
+    } else if (correlationScore > 70 && correlationScore <= 80) {
+      return {'color': Colors.lightGreen[900], 'text': Colors.white};
+    } else if (correlationScore > 80 && correlationScore <= 90) {
+      return {'color': Colors.indigo[900], 'text': Colors.white};
+    } else if (correlationScore > 90 && correlationScore <= 100) {
+      return {'color': Colors.grey[900], 'text': Colors.white};
+    } else
+      return {'color': Colors.white, 'text': Colors.black};
   }
 
   String _scoreSign(int score) {
@@ -86,7 +104,7 @@ class _CorrelationItemState extends State<CorrelationItem> {
           Expanded(
             flex: 5,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(left: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +187,6 @@ class _CorrelationItemState extends State<CorrelationItem> {
                     ],
                   ),
                   Row(
-                    // crossAxisAlignment: CrossAxisAlignment,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text('Correlation Score:'),
@@ -177,30 +194,34 @@ class _CorrelationItemState extends State<CorrelationItem> {
                         // margin: EdgeInsets.all(5),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 12,
+                            vertical: 5,
+                            horizontal: 15,
                           ),
-                          child: Text('${widget.correlationScore}'),
+                          child: Text(
+                            '${widget.correlationScore}',
+                            style: CupertinoTheme.of(context)
+                                .textTheme
+                                .navTitleTextStyle
+                                .copyWith(
+                                  fontSize: 18,
+                                  letterSpacing: 1,
+                                  color: _correlationOverallColor(
+                                      widget.correlationScore)['text'],
+                                ),
+                          ),
                         ),
-                        // width: MediaQuery.of(context).size.width * 0.15,
                         decoration: ShapeDecoration(
-                          // color for correlationScore
-                          color: CupertinoTheme.of(context)
-                              .primaryContrastingColor,
+                          color: _correlationOverallColor(
+                              widget.correlationScore)['color'],
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
-                              width: MediaQuery.of(context).size.width * 0.006,
-                              // color for correlation tier
-                              color: CupertinoTheme.of(context).primaryColor,
+                              width: 5,
+                              color: _tierColor(widget.tier),
                             ),
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
                           ),
                         ),
                       ),
-                      // Container(
-                      //   margin: EdgeInsets.symmetric(horizontal: 10),
-                      //   child: Text('${widget.correlationScore}'),
-                      // ),
                     ],
                   )
                 ],
