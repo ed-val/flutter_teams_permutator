@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     teamHome: 'BAYERN MUNCHEN',
                     dominion: -1,
                     // implement enums
-                    tier: 'gold',
+                    tier: 'diamond',
                     correlationScore: 95,
                   ),
                 ],

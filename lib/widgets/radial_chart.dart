@@ -61,15 +61,40 @@ class _RadialChartState extends State<RadialChart> {
   }
 }
 
-Color getColorForRadial(int percentage) {
-  if (percentage >= 0 && percentage <= 32) {
-    return Colors.red[300];
-  } else if (percentage >= 33 && percentage <= 65) {
-    return Colors.yellow[300];
-  } else if (percentage >= 66) {
-    return Colors.green[300];
-  }
-  return Colors.black;
+// Color getColorForRadial(int percentage) {
+//   if (percentage >= 0 && percentage <= 32) {
+//     return Colors.red[300];
+//   } else if (percentage >= 33 && percentage <= 65) {
+//     return Colors.yellow[300];
+//   } else if (percentage >= 66) {
+//     return Colors.green[300];
+//   }
+//   return Colors.black;
+// }
+
+Map<String, Color> _radialTrackColor(int percentage) {
+  if (percentage <= 10) {
+    return {'color': Colors.red[900], 'text': Colors.white};
+  } else if (percentage > 10 && percentage <= 20) {
+    return {'color': Colors.red, 'text': Colors.white};
+  } else if (percentage > 20 && percentage <= 30) {
+    return {'color': Colors.orange[900], 'text': Colors.white};
+  } else if (percentage > 30 && percentage <= 40) {
+    return {'color': Colors.orange, 'text': Colors.black};
+  } else if (percentage > 40 && percentage <= 50) {
+    return {'color': Colors.yellow[800], 'text': Colors.black};
+  } else if (percentage > 50 && percentage <= 60) {
+    return {'color': Colors.yellow[400], 'text': Colors.black};
+  } else if (percentage > 60 && percentage <= 70) {
+    return {'color': Colors.green, 'text': Colors.white};
+  } else if (percentage > 70 && percentage <= 80) {
+    return {'color': Colors.green[700], 'text': Colors.white};
+  } else if (percentage > 80 && percentage <= 90) {
+    return {'color': Colors.lightGreen[900], 'text': Colors.white};
+  } else if (percentage > 90 && percentage <= 100) {
+    return {'color': Colors.indigo, 'text': Colors.white};
+  } else
+    return {'color': Colors.white, 'text': Colors.black};
 }
 
 List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(
@@ -84,21 +109,21 @@ List<RadialBarSeries<_RadialData, String>> getRadialBarSeries(
       drawPercentage,
       'Draw  ',
       null,
-      getColorForRadial(drawPercentage),
+      _radialTrackColor(drawPercentage)['color'],
     ),
     _RadialData(
       'LOSE $losePercentage%\n$team \nloses match.',
       losePercentage,
       'Lose  ',
       null,
-      getColorForRadial(losePercentage),
+      _radialTrackColor(losePercentage)['color'],
     ),
     _RadialData(
       'WIN $winPercentage%\n$team \nwins match.',
       winPercentage,
       'Win  ',
       null,
-      getColorForRadial(winPercentage),
+      _radialTrackColor(winPercentage)['color'],
     ),
   ];
   var list = <RadialBarSeries<_RadialData, String>>[

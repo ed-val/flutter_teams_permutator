@@ -39,44 +39,19 @@ class _CorrelationItemState extends State<CorrelationItem> {
     return Colors.black;
   }
 
-  Color _tierColor(String tier) {
+  Map<String, Color> _tierColor(String tier) {
     if (tier == 'bronze') {
-      return Colors.brown[300];
+      return {'main': Colors.brown[200], 'contrast': Colors.brown[600]};
     } else if (tier == 'silver') {
-      return Colors.grey[350];
+      return {'main': Colors.grey[300], 'contrast': Colors.grey[600]};
     } else if (tier == 'gold') {
-      return Colors.amber[300];
+      return {'main': Colors.amber[200], 'contrast': Colors.amber[500]};
     } else if (tier == 'platinum') {
-      return Colors.blueGrey[400];
+      return {'main': Colors.blue[200], 'contrast': Colors.blue};
     } else if (tier == 'diamond') {
-      return Colors.pink[900];
+      return {'main': Colors.deepPurple[200], 'contrast': Colors.pink[900]};
     }
-    return Colors.white;
-  }
-
-  Map<String, Color> _correlationOverallColor(int correlationScore) {
-    if (correlationScore <= 10) {
-      return {'color': Colors.red[900], 'text': Colors.white};
-    } else if (correlationScore > 10 && correlationScore <= 20) {
-      return {'color': Colors.red, 'text': Colors.white};
-    } else if (correlationScore > 20 && correlationScore <= 30) {
-      return {'color': Colors.orange[900], 'text': Colors.white};
-    } else if (correlationScore > 30 && correlationScore <= 40) {
-      return {'color': Colors.orange, 'text': Colors.black};
-    } else if (correlationScore > 40 && correlationScore <= 50) {
-      return {'color': Colors.yellow[800], 'text': Colors.black};
-    } else if (correlationScore > 50 && correlationScore <= 60) {
-      return {'color': Colors.yellow[400], 'text': Colors.black};
-    } else if (correlationScore > 60 && correlationScore <= 70) {
-      return {'color': Colors.green, 'text': Colors.white};
-    } else if (correlationScore > 70 && correlationScore <= 80) {
-      return {'color': Colors.lightGreen[900], 'text': Colors.white};
-    } else if (correlationScore > 80 && correlationScore <= 90) {
-      return {'color': Colors.indigo[900], 'text': Colors.white};
-    } else if (correlationScore > 90 && correlationScore <= 100) {
-      return {'color': Colors.grey[900], 'text': Colors.white};
-    } else
-      return {'color': Colors.white, 'text': Colors.black};
+    return {'main': Colors.white, 'contrast': Colors.white};
   }
 
   String _scoreSign(int score) {
@@ -90,14 +65,15 @@ class _CorrelationItemState extends State<CorrelationItem> {
   @override
   Widget build(BuildContext context) {
     return CupertinoContainer(
+      borderColor: _tierColor(widget.tier)['contrast'],
       child: Row(
         children: <Widget>[
           Expanded(
             flex: 3,
             child: RadialChart(
               drawPercentage: 5,
-              losePercentage: 43,
-              winPercentage: 84,
+              losePercentage: 15,
+              winPercentage: 80,
               team: 'Bayern München FB',
             ),
           ),
@@ -205,18 +181,15 @@ class _CorrelationItemState extends State<CorrelationItem> {
                                 .copyWith(
                                   fontSize: 18,
                                   letterSpacing: 1,
-                                  color: _correlationOverallColor(
-                                      widget.correlationScore)['text'],
                                 ),
                           ),
                         ),
                         decoration: ShapeDecoration(
-                          color: _correlationOverallColor(
-                              widget.correlationScore)['color'],
+                          color: _tierColor(widget.tier)['main'],
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                               width: 5,
-                              color: _tierColor(widget.tier),
+                              color: _tierColor(widget.tier)['main'],
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(25)),
                           ),
